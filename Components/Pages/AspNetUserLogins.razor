@@ -1,0 +1,48 @@
+@page "/asp-net-user-logins"
+@attribute [Authorize]
+
+<PageTitle>AspNetUserLogins</PageTitle>
+<RadzenStack>
+    <RadzenRow AlignItems="AlignItems.Center">
+        <RadzenColumn Size="12" SizeMD="6">
+            <RadzenText Text="AspNetUserLogins" TextStyle="TextStyle.H3" TagName="TagName.H1" style="margin: 0" />
+        </RadzenColumn>
+        <RadzenColumn Size="12" SizeMD="6">
+            <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.End" Gap="0.5rem">
+                <RadzenSplitButton Icon="get_app" Text="Export" Click="@ExportClick" Variant="Variant.Flat" Shade="Shade.Lighter">
+                    <RadzenSplitButtonItem Text="Excel" Value="xlsx" />
+                    <RadzenSplitButtonItem Text="CSV" Value="csv" />
+                </RadzenSplitButton>
+                <RadzenButton Icon="add_circle_outline" Text="Add" Click="@AddButtonClick" Variant="Variant.Flat" />
+            </RadzenStack>
+        </RadzenColumn>
+    </RadzenRow>
+    <RadzenTextBox Placeholder="Search ..." style="display: block; width: 100%" @oninput="@Search" aria-label="Search by all string columns" />
+    <RadzenRow>
+      <RadzenColumn SizeMD=12>
+        <RadzenDataGrid @ref="grid0" ColumnWidth="200px"   AllowFiltering="true" FilterMode="FilterMode.Advanced" AllowPaging="true" AllowSorting="true" ShowPagingSummary="true" PageSizeOptions=@(new int[]{5, 10, 20, 30})
+            Data="@(aspNetUserLogins)" TItem="DESKTOPJN6V6MTSQLEXPRESS.Models.FinalDB.AspNetUserLogin" RowDoubleClick="@EditRow">
+            <Columns>
+                <RadzenDataGridColumn TItem="DESKTOPJN6V6MTSQLEXPRESS.Models.FinalDB.AspNetUserLogin" Property="LoginProvider" Title="Login Provider">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="DESKTOPJN6V6MTSQLEXPRESS.Models.FinalDB.AspNetUserLogin" Property="ProviderKey" Title="Provider Key">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="DESKTOPJN6V6MTSQLEXPRESS.Models.FinalDB.AspNetUserLogin" Property="ProviderDisplayName" Title="Provider Display Name">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="DESKTOPJN6V6MTSQLEXPRESS.Models.FinalDB.AspNetUserLogin" Property="User.Id" Title="User">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="DESKTOPJN6V6MTSQLEXPRESS.Models.FinalDB.AspNetUserLogin" Filterable="false" Sortable="false" Width="70px" TextAlign="TextAlign.Center">
+                    <Template Context="aspNetUserLogin">
+
+                        <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="delete" Size="ButtonSize.Medium"
+                            Shade="Shade.Lighter" Variant="Variant.Flat"
+                            Click=@(args => GridDeleteButtonClick(args, aspNetUserLogin)) @onclick:stopPropagation="true" />
+                    </Template>
+                </RadzenDataGridColumn>
+            </Columns>
+
+        </RadzenDataGrid>
+
+    </RadzenColumn>
+  </RadzenRow>
+</RadzenStack>

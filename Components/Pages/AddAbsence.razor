@@ -1,0 +1,108 @@
+@page "/add-absence"
+
+@attribute [Authorize]
+
+<PageTitle>Add Absence</PageTitle>
+
+<RadzenColumn SizeMD=12>
+    <RadzenAlert Shade="Shade.Lighter" Variant="Variant.Flat" Size="AlertSize.Small" AlertStyle="AlertStyle.Danger" Visible="@errorVisible">
+        Cannot save Absence
+    </RadzenAlert>
+
+    <RadzenTemplateForm TItem="DESKTOPJN6V6MTSQLEXPRESS.Models.FinalDB.Absence"
+                        Data="@(absence)"
+                        Visible="@(absence != null)"
+                        Submit="@FormSubmit">
+        <RadzenStack>
+            <!-- Employé -->
+            <RadzenFormField Text="Employé" Variant="Variant.Filled">
+                <ChildContent>
+                    <RadzenDropDownDataGrid Data="@(employesForemployeId)"
+                                            TextProperty="Employe_Prenom"
+                                            ValueProperty="Employe_id"
+                                            AllowClear="true"
+                                            Style="display: block; width: 100%"
+                                            @bind-Value="@(absence.employe_id)"
+                                            Name="employe_id" 
+                                            Required="true"/>
+                </ChildContent>
+            </RadzenFormField>
+
+            <!-- Date Début -->
+            <RadzenFormField Text="Date Début" Variant="Variant.Filled">
+                <ChildContent>
+                    <RadzenDatePicker @bind-Value="absence.date_debut"
+                                      Name="date_debut"
+                                      DateFormat="dd/MM/yyyy"
+                                      ShowTime="true"
+                                      Min="DateTime.Today"
+                                      Max="@absence.date_fin"
+                                      Style="width: 100%;" />
+                    <RadzenRequiredValidator Component="date_debut"
+                                             Text="Ce champ est obligatoire"
+                                             Popup="true" />
+                </ChildContent>
+            </RadzenFormField>
+
+            <!-- Date Fin -->
+            <RadzenFormField Text="Date Fin" Variant="Variant.Filled">
+                <ChildContent>
+                    <RadzenDatePicker @bind-Value="absence.date_fin"
+                                      Name="date_fin"
+                                      DateFormat="dd/MM/yyyy"
+                                      ShowTime="true"
+                                      TimeOnly="false"
+                                      Min="@absence.date_debut"
+                                      Style="width: 100%;" />
+                    <RadzenRequiredValidator Component="date_fin"
+                                             Text="Ce champ est obligatoire"
+                                             Popup="true" />
+                </ChildContent>
+            </RadzenFormField>
+
+            <!-- Type d'absence -->
+            <RadzenFormField Text="Type d'absence" Variant="Variant.Filled">
+                <ChildContent>
+                    <RadzenDropDown Data="typeAbsenceOptions"
+                                    @bind-Value="absence.type_absence"
+                                    Name="type_absence"
+                                    AllowClear="true"
+                                    Placeholder="Choisissez le type d'absence"
+                                    Style="width: 100%" />
+                    <RadzenRequiredValidator Component="type_absence" Text="Ce champ est obligatoire" Popup="true" />
+                </ChildContent>
+            </RadzenFormField>
+
+            <!-- Statut -->
+            <RadzenFormField Text="Statut" Variant="Variant.Filled">
+                <ChildContent>
+                    <RadzenDropDown Data="statutOptions"
+                                    @bind-Value="absence.statut"
+                                    Name="statut"
+                                    AllowClear="true"
+                                    Placeholder="Choisissez le statut"
+                                    Style="width: 100%" />
+                    <RadzenRequiredValidator Component="statut" Text="Ce champ est obligatoire" Popup="true" />
+                </ChildContent>
+            </RadzenFormField>
+
+
+        </RadzenStack>
+
+        <RadzenStack Style="margin-top:1rem;"
+                     Orientation="Orientation.Horizontal"
+                     AlignItems="AlignItems.Center"
+                     JustifyContent="JustifyContent.End"
+                     Gap="0.5rem">
+            <RadzenButton ButtonStyle="ButtonStyle.Primary"
+                          ButtonType="ButtonType.Submit"
+                          Icon="save"
+                          Text="Save"
+                          Variant="Variant.Flat" />
+            <RadzenButton ButtonStyle="ButtonStyle.Light"
+                          Text="Cancel"
+                          Variant="Variant.Flat"
+                          Click="@CancelButtonClick" />
+        </RadzenStack>
+    </RadzenTemplateForm>
+</RadzenColumn>

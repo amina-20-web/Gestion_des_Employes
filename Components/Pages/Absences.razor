@@ -1,0 +1,100 @@
+@page "/absences"
+
+@attribute [Authorize]
+
+<PageTitle>Absences</PageTitle>
+
+<RadzenStack>
+    <!-- Bloc titre -->
+    <RadzenRow AlignItems="AlignItems.Center">
+        <RadzenColumn Size="12" SizeMD="6">
+            <div style="
+                display: inline-block;
+                background-color: rgba(30, 58, 138, 0.6);
+                padding: 0.5rem 1rem;
+                border-radius: 0.5rem;">
+                <RadzenText Text="Absences : "
+                             TextStyle="TextStyle.H2"
+                             Style="font-weight:bold; color: white; margin: 0;" />
+            </div>
+        </RadzenColumn>
+        <RadzenColumn Size="12" SizeMD="6">
+            <RadzenStack Orientation="Orientation.Horizontal"
+                         AlignItems="AlignItems.Center"
+                         JustifyContent="JustifyContent.End"
+                         Gap="0.5rem">
+                <RadzenSplitButton Icon="get_app"
+                                   Text="Export"
+                                   Click="@ExportClick"
+                                   Variant="Variant.Filled"
+                                   ButtonStyle="ButtonStyle.Primary"
+                                   Shade="Shade.Dark">
+                    <RadzenSplitButtonItem Text="Excel" Value="xlsx" />
+                    <RadzenSplitButtonItem Text="CSV" Value="csv" />
+                </RadzenSplitButton>
+
+                <RadzenButton Icon="add_circle_outline"
+                              Text="Add"
+                              Click="@AddButtonClick"
+                              Variant="Variant.Flat" />
+            </RadzenStack>
+        </RadzenColumn>
+    </RadzenRow>
+
+    <RadzenTextBox Placeholder="Search ..."
+                   style="display: block; width: 100%"
+                   @oninput="@Search"
+                   aria-label="Search by all string columns" />
+
+    <RadzenRow>
+        <RadzenColumn SizeMD="12">
+            <RadzenDataGrid @ref="grid0"
+                            TItem="DESKTOPJN6V6MTSQLEXPRESS.Models.FinalDB.Absence"
+                            Data="@(absences)"
+                            ColumnWidth="200px"
+                            AllowFiltering="true"
+                            FilterMode="FilterMode.Advanced"
+                            AllowPaging="true"
+                            AllowSorting="true"
+                            ShowPagingSummary="true"
+                            PageSizeOptions="@(new int[]{5, 10, 20, 30})"
+                            RowDoubleClick="@EditRow">
+                <Columns>
+                    <RadzenDataGridColumn Visible="false" TItem="DESKTOPJN6V6MTSQLEXPRESS.Models.FinalDB.Absence"
+                                          Property="absence_id"
+                                          Title="Absence id" />
+                    <RadzenDataGridColumn TItem="DESKTOPJN6V6MTSQLEXPRESS.Models.FinalDB.Absence"
+                                          Property="employe.Employe_Prenom"
+                                          Title="Employé" />
+                    <RadzenDataGridColumn TItem="DESKTOPJN6V6MTSQLEXPRESS.Models.FinalDB.Absence"
+                                          Property="date_debut"
+                                          Title="Date début" />
+                    <RadzenDataGridColumn TItem="DESKTOPJN6V6MTSQLEXPRESS.Models.FinalDB.Absence"
+                                          Property="date_fin"
+                                          Title="Date fin" />
+                    <RadzenDataGridColumn TItem="DESKTOPJN6V6MTSQLEXPRESS.Models.FinalDB.Absence"
+                                          Property="type_absence"
+                                          Title="Type d'absence" />
+                    <RadzenDataGridColumn TItem="DESKTOPJN6V6MTSQLEXPRESS.Models.FinalDB.Absence"
+                                          Property="statut"
+                                          Title="Statut" />
+                    <RadzenDataGridColumn TItem="DESKTOPJN6V6MTSQLEXPRESS.Models.FinalDB.Absence"
+                                          Filterable="false"
+                                          Sortable="false"
+                                          Width="70px"
+                                          TextAlign="TextAlign.Center">
+                        <Template Context="absence">
+                            <RadzenButton ButtonStyle="ButtonStyle.Danger"
+                                          Icon="delete"
+                                          Size="ButtonSize.Medium"
+                                          Shade="Shade.Lighter"
+                                          Variant="Variant.Flat"
+                                          Click="@((args) => GridDeleteButtonClick(args, absence))"
+                                          @onclick:stopPropagation="true" />
+                        </Template>
+                    </RadzenDataGridColumn>
+                </Columns>
+            </RadzenDataGrid>
+        </RadzenColumn>
+    </RadzenRow>
+</RadzenStack>

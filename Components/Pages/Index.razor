@@ -1,0 +1,58 @@
+@page "/"
+@attribute [Authorize]
+
+
+<PageTitle>Accueil</PageTitle>
+
+<RadzenRow Style="min-height: 90vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; background-image: url('/images/Main.png'); background-size: cover; background-position: center;">
+    <RadzenColumn Size="12">
+        <RadzenText Text="Bienvenue à" TextStyle="TextStyle.DisplayH2" TagName="TagName.H1" Style="color: black; font-weight: bold;" />
+        <RadzenText Text="OfficeManager !" TextStyle="TextStyle.DisplayH2" TagName="TagName.H2" Style="color: green; font-weight: bold;" />
+        <RadzenText Text="Gérez parfaitement vos employés, les départements et les absences !" 
+                    TextStyle="TextStyle.Body1" TagName="TagName.P" 
+                    Style="font-size: 22px; line-height: 30px; color:black; font-weight: bold;" />
+    </RadzenColumn>
+
+    <RadzenColumn Size="12">
+        <RadzenRow ColumnGap="20">
+            <!-- Employés -->
+            <RadzenColumn Size="12" SizeMD="4">
+                <RadzenCard Style="padding: 20px; min-height: 220px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+                    <RadzenText Text="Employés" TextStyle="TextStyle.H5" TagName="TagName.H3" Style="font-weight: bold;" />
+                    <RadzenText Text="Consultez et gérez rapidement la liste des employés." Style="margin-top: 10px;" />
+                    <RadzenButton Text="👥 VOIR EMPLOYÉS" 
+                                  Style="margin-top: 20px;" 
+                                  ButtonStyle="ButtonStyle.Primary" 
+                                  Click="@(() => NavigationManager.NavigateTo("/employes"))" />
+                </RadzenCard>
+            </RadzenColumn>
+
+            <!-- Départements -->
+            <RadzenColumn Size="12" SizeMD="4">
+                <RadzenCard Style="padding: 20px; min-height: 220px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+                    <RadzenText Text="Départements" TextStyle="TextStyle.H5" TagName="TagName.H3" Style="font-weight: bold;" />
+                    <RadzenText Text="Organisez vos départements efficacement." Style="margin-top: 10px;" />
+                    <RadzenButton Text="🏢 VOIR DÉPARTEMENTS" 
+                                  Style="margin-top: 20px;" 
+                                  ButtonStyle="ButtonStyle.Primary"
+                                  Click="@(() => NavigationManager.NavigateTo("/departements"))" />
+                </RadzenCard>
+            </RadzenColumn>
+
+            <!-- Postes -->
+            <RadzenColumn Size="12" SizeMD="4">
+                <RadzenCard Style="padding: 20px; min-height: 220px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+                    <RadzenText Text="Postes" TextStyle="TextStyle.H5" TagName="TagName.H3" Style="font-weight: bold;" />
+                    <RadzenText Text="Gérez les postes au sein de votre entreprise." Style="margin-top: 10px;" />
+                    <RadzenButton Text="💼 VOIR POSTES" 
+                                  Style="margin-top: 20px;" 
+                                  ButtonStyle="ButtonStyle.Primary"
+                                  Click="@(() => NavigationManager.NavigateTo("/postes"))" />
+                </RadzenCard>
+            </RadzenColumn>
+        </RadzenRow>
+    </RadzenColumn>
+
+    <!-- Bouton Ajout Employé -->
+    
+</RadzenRow>

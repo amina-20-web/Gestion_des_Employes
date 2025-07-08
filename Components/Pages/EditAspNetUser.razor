@@ -1,0 +1,110 @@
+@page "/edit-asp-net-user"
+@attribute [Authorize]
+
+<PageTitle>Edit AspNetUser</PageTitle>
+
+    <RadzenColumn SizeMD=12>
+        <RadzenAlert Shade="Shade.Lighter" Variant="Variant.Flat" Size="AlertSize.Small" AlertStyle="AlertStyle.Danger" Visible="@errorVisible">Cannot save AspNetUser</RadzenAlert>
+        <RadzenTemplateForm TItem="DESKTOPJN6V6MTSQLEXPRESS.Models.FinalDB.AspNetUser" Data="@(aspNetUser)" Visible="@(aspNetUser != null)" Submit="@FormSubmit">
+          <RadzenStack>
+            <RadzenFormField Text="Id" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@(aspNetUser.Id)" Name="Id" />
+                  </ChildContent>    
+                  <Helper>
+                    <RadzenRequiredValidator Component="Id" Text="Id is required" />
+                  </Helper>
+            </RadzenFormField>
+            <RadzenFormField Text="Access Failed Count" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenNumeric style="display: block; width: 100%" @bind-Value="@(aspNetUser.AccessFailedCount)" Name="AccessFailedCount" />
+                  </ChildContent>    
+                  <Helper>
+                    <RadzenRequiredValidator Component="AccessFailedCount" Text="AccessFailedCount is required" />
+                  </Helper>
+            </RadzenFormField>
+            <RadzenFormField Text="Concurrency Stamp" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@(aspNetUser.ConcurrencyStamp)" Name="ConcurrencyStamp" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="Email" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@(aspNetUser.Email)" Name="Email" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenRow style="margin-bottom: 1rem">
+                <RadzenColumn SizeMD="3">
+                    <RadzenLabel Text="Email Confirmed" Component="EmailConfirmed" style="width: 100%" />
+                </RadzenColumn>
+                <RadzenColumn SizeMD="9">
+                    <RadzenCheckBox @bind-Value="@(aspNetUser.EmailConfirmed)" Name="EmailConfirmed" />
+                </RadzenColumn>
+            </RadzenRow>
+            <RadzenRow style="margin-bottom: 1rem">
+                <RadzenColumn SizeMD="3">
+                    <RadzenLabel Text="Lockout Enabled" Component="LockoutEnabled" style="width: 100%" />
+                </RadzenColumn>
+                <RadzenColumn SizeMD="9">
+                    <RadzenCheckBox @bind-Value="@(aspNetUser.LockoutEnabled)" Name="LockoutEnabled" />
+                </RadzenColumn>
+            </RadzenRow>
+            <RadzenFormField Text="Lockout End" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenDatePicker DateFormat="dd/MM/yyyy" style="display: block; width: 100%" @bind-Value="@(aspNetUser.LockoutEnd)" Name="LockoutEnd" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="Normalized Email" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@(aspNetUser.NormalizedEmail)" Name="NormalizedEmail" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="Normalized User Name" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@(aspNetUser.NormalizedUserName)" Name="NormalizedUserName" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="Password Hash" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@(aspNetUser.PasswordHash)" Name="PasswordHash" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="Phone Number" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@(aspNetUser.PhoneNumber)" Name="PhoneNumber" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenRow style="margin-bottom: 1rem">
+                <RadzenColumn SizeMD="3">
+                    <RadzenLabel Text="Phone Number Confirmed" Component="PhoneNumberConfirmed" style="width: 100%" />
+                </RadzenColumn>
+                <RadzenColumn SizeMD="9">
+                    <RadzenCheckBox @bind-Value="@(aspNetUser.PhoneNumberConfirmed)" Name="PhoneNumberConfirmed" />
+                </RadzenColumn>
+            </RadzenRow>
+            <RadzenFormField Text="Security Stamp" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@(aspNetUser.SecurityStamp)" Name="SecurityStamp" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenRow style="margin-bottom: 1rem">
+                <RadzenColumn SizeMD="3">
+                    <RadzenLabel Text="Two Factor Enabled" Component="TwoFactorEnabled" style="width: 100%" />
+                </RadzenColumn>
+                <RadzenColumn SizeMD="9">
+                    <RadzenCheckBox @bind-Value="@(aspNetUser.TwoFactorEnabled)" Name="TwoFactorEnabled" />
+                </RadzenColumn>
+            </RadzenRow>
+            <RadzenFormField Text="User Name" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@(aspNetUser.UserName)" Name="UserName" />
+              </ChildContent>
+            </RadzenFormField>
+          </RadzenStack>
+          <RadzenStack style="margin-top:1rem;" Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.End" Gap="0.5rem">
+                    <RadzenButton ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" Icon="save" Text="Save" Variant="Variant.Flat" />
+                    <RadzenButton ButtonStyle="ButtonStyle.Light" Text="Cancel" Variant="Variant.Flat" Click="@CancelButtonClick"  />
+          </RadzenStack>
+        </RadzenTemplateForm>
+    </RadzenColumn>
+

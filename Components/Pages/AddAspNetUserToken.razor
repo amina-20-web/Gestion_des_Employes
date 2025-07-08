@@ -1,0 +1,44 @@
+@page "/add-asp-net-user-token"
+@attribute [Authorize]
+
+<PageTitle>Add AspNetUserToken</PageTitle>
+    <RadzenColumn SizeMD=12>
+        <RadzenAlert Shade="Shade.Lighter" Variant="Variant.Flat" Size="AlertSize.Small" AlertStyle="AlertStyle.Danger" Visible="@errorVisible">Cannot save AspNetUserToken</RadzenAlert>
+        <RadzenTemplateForm TItem="DESKTOPJN6V6MTSQLEXPRESS.Models.FinalDB.AspNetUserToken" Data="@(aspNetUserToken)" Visible="@(aspNetUserToken != null)" Submit="@FormSubmit">
+          <RadzenStack>
+            <RadzenFormField Text="User" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenDropDownDataGrid Data="@(aspNetUsersForUserId)" TextProperty="Id" ValueProperty="Id" AllowClear=true
+                          style="display: block; width: 100%" @bind-Value="@(aspNetUserToken.UserId)" Name="UserId"
+                           />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="Login Provider" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@(aspNetUserToken.LoginProvider)" Name="LoginProvider" />
+                  </ChildContent>    
+                  <Helper>
+                    <RadzenRequiredValidator Component="LoginProvider" Text="LoginProvider is required" />
+                  </Helper>
+            </RadzenFormField>
+            <RadzenFormField Text="Name" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@(aspNetUserToken.Name)" Name="Name" />
+                  </ChildContent>    
+                  <Helper>
+                    <RadzenRequiredValidator Component="Name" Text="Name is required" />
+                  </Helper>
+            </RadzenFormField>
+            <RadzenFormField Text="Value" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@(aspNetUserToken.Value)" Name="Value" />
+              </ChildContent>
+            </RadzenFormField>
+          </RadzenStack>
+          <RadzenStack style="margin-top:1rem;" Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.End" Gap="0.5rem">
+                    <RadzenButton ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" Icon="save" Text="Save" Variant="Variant.Flat" />
+                    <RadzenButton ButtonStyle="ButtonStyle.Light" Text="Cancel" Variant="Variant.Flat" Click="@CancelButtonClick"  />
+          </RadzenStack>
+        </RadzenTemplateForm>
+    </RadzenColumn>
+

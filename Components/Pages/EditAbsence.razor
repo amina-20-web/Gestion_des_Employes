@@ -1,0 +1,44 @@
+@page "/edit-absence"
+@attribute [Authorize]
+
+<PageTitle>Edit Absence</PageTitle>
+
+    <RadzenColumn SizeMD=12>
+        <RadzenAlert Shade="Shade.Lighter" Variant="Variant.Flat" Size="AlertSize.Small" AlertStyle="AlertStyle.Danger" Visible="@errorVisible">Cannot save Absence</RadzenAlert>
+        <RadzenTemplateForm TItem="DESKTOPJN6V6MTSQLEXPRESS.Models.FinalDB.Absence" Data="@(absence)" Visible="@(absence != null)" Submit="@FormSubmit">
+          <RadzenStack>
+            <RadzenFormField Text="employe" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenDropDownDataGrid Data="@(employesForemployeId)" TextProperty="Employe_Prenom" ValueProperty="Employe_id" AllowClear=true
+                          style="display: block; width: 100%" @bind-Value="@(absence.employe_id)" Name="employe_id"
+                           />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="datedebut" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenDatePicker DateFormat="dd/MM/yyyy" style="display: block; width: 100%" @bind-Value="@(absence.date_debut)" Name="date_debut" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="datefin" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenDatePicker DateFormat="dd/MM/yyyy" style="display: block; width: 100%" @bind-Value="@(absence.date_fin)" Name="date_fin" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="typeabsence" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@(absence.type_absence)" Name="type_absence" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="statut" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@(absence.statut)" Name="statut" />
+              </ChildContent>
+            </RadzenFormField>
+          </RadzenStack>
+          <RadzenStack style="margin-top:1rem;" Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.End" Gap="0.5rem">
+                    <RadzenButton ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" Icon="save" Text="Save" Variant="Variant.Flat" />
+                    <RadzenButton ButtonStyle="ButtonStyle.Light" Text="Cancel" Variant="Variant.Flat" Click="@CancelButtonClick"  />
+          </RadzenStack>
+        </RadzenTemplateForm>
+    </RadzenColumn>
+

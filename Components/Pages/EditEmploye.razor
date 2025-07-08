@@ -1,0 +1,84 @@
+@page "/edit-employe"
+
+@attribute [Authorize]
+
+<PageTitle>Edit Employe</PageTitle>
+
+    <RadzenColumn SizeMD=12>
+        <RadzenAlert Shade="Shade.Lighter" Variant="Variant.Flat" Size="AlertSize.Small" AlertStyle="AlertStyle.Danger" Visible="@errorVisible">Cannot save Employe</RadzenAlert>
+        <RadzenTemplateForm TItem="DESKTOPJN6V6MTSQLEXPRESS.Models.FinalDB.Employe" Data="@(employe)" Visible="@(employe != null)" Submit="@FormSubmit">
+          <RadzenStack>
+            <RadzenFormField Text="Employe Prenom" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@(employe.Employe_Prenom)" Name="Employe_Prenom" />
+                  </ChildContent>    
+                  <Helper>
+                    <RadzenRequiredValidator Component="Employe_Prenom" Text="Employe_Prenom is required" />
+                  </Helper>
+            </RadzenFormField>
+            <RadzenFormField Text="Employenom" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@(employe.Employe_nom)" Name="Employe_nom" />
+                  </ChildContent>    
+                  <Helper>
+                    <RadzenRequiredValidator Component="Employe_nom" Text="Employe_nom is required" />
+                  </Helper>
+            </RadzenFormField>
+            <RadzenFormField Text="Employe Salery" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenNumeric style="display: block; width: 100%" @bind-Value="@(employe.EmployeSalery)" Name="EmployeSalery" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="Sexe" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@(employe.Sexe)" Name="Sexe" />
+                  </ChildContent>    
+                  <Helper>
+                    <RadzenRequiredValidator Component="Sexe" Text="Sexe is required" />
+                  </Helper>
+            </RadzenFormField>
+            <RadzenFormField Text="Email" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@(employe.Email)" Name="Email" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="Telephone" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@(employe.Telephone)" Name="Telephone" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="Date Embauche" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenDatePicker DateFormat="dd/MM/yyyy" style="display: block; width: 100%" @bind-Value="@(employe.DateEmbauche)" Name="DateEmbauche" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="Manager" Variant="Variant.Filled">
+                  <ChildContent> </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="Post" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenDropDownDataGrid Data="@(postesForPostId)" TextProperty="Post_name" ValueProperty="Post_id" AllowClear=true
+                          style="display: block; width: 100%" @bind-Value="@(employe.Post_id)" Name="Post_id"
+                           />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="Departement" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenDropDownDataGrid Data="@(departementsForDepartementId)" TextProperty="Departement_Name" ValueProperty="Departement_id" AllowClear=true
+                          style="display: block; width: 100%" @bind-Value="@(employe.Departement_id)" Name="Departement_id"
+                           />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="Datenaissance" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenDatePicker DateFormat="dd/MM/yyyy" style="display: block; width: 100%" @bind-Value="@(employe.Date_naissance)" Name="Date_naissance" />
+              </ChildContent>
+            </RadzenFormField>
+          </RadzenStack>
+          <RadzenStack style="margin-top:1rem;" Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.End" Gap="0.5rem">
+                    <RadzenButton ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" Icon="save" Text="Save" Variant="Variant.Flat" />
+                    <RadzenButton ButtonStyle="ButtonStyle.Light" Text="Cancel" Variant="Variant.Flat" Click="@CancelButtonClick"  />
+          </RadzenStack>
+        </RadzenTemplateForm>
+    </RadzenColumn>
+
