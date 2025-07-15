@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DESKTOPJN6V6MTSQLEXPRESS")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3f8dd2d27de0536ab42fd996f8fe0ea85c8d8790")]
 [assembly: System.Reflection.AssemblyProductAttribute("DESKTOPJN6V6MTSQLEXPRESS")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DESKTOPJN6V6MTSQLEXPRESS")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

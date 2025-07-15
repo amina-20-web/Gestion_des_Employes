@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\spoon\\FinalDB\\DESKTOPJN6V6MTSQLEXPRESS.csproj": {}
+    "C:\\Users\\spoon\\DB\\Gestion_des_Employes\\DESKTOPJN6V6MTSQLEXPRESS.csproj": {}
   },
   "projects": {
-    "C:\\Users\\spoon\\FinalDB\\DESKTOPJN6V6MTSQLEXPRESS.csproj": {
+    "C:\\Users\\spoon\\DB\\Gestion_des_Employes\\DESKTOPJN6V6MTSQLEXPRESS.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\spoon\\FinalDB\\DESKTOPJN6V6MTSQLEXPRESS.csproj",
+        "projectUniqueName": "C:\\Users\\spoon\\DB\\Gestion_des_Employes\\DESKTOPJN6V6MTSQLEXPRESS.csproj",
         "projectName": "DESKTOPJN6V6MTSQLEXPRESS",
-        "projectPath": "C:\\Users\\spoon\\FinalDB\\DESKTOPJN6V6MTSQLEXPRESS.csproj",
+        "projectPath": "C:\\Users\\spoon\\DB\\Gestion_des_Employes\\DESKTOPJN6V6MTSQLEXPRESS.csproj",
         "packagesPath": "C:\\Users\\spoon\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\spoon\\FinalDB\\obj\\",
+        "outputPath": "C:\\Users\\spoon\\DB\\Gestion_des_Employes\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\spoon\\AppData\\Roaming\\NuGet\\NuGet.Config"
